@@ -1,0 +1,22 @@
+{
+  "name": "Sapphorion HQ",
+  "short_name": "HQ",
+  "description": "One place for every Sapphorion division: tasks, deadlines, contacts and links.",
+  "start_url": "./#home",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "background_color": "#F6F3EC",
+  "theme_color": "#0A2C47",
+  "orientation": "any",
+  "categories": ["business", "productivity"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Tasks", "url": "./#tasks" },
+    { "name": "Calendar", "url": "./#calendar" }
+  ]
+}
