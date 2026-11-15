@@ -4,6 +4,7 @@ import { state, replaceAll, change } from '../state.js';
 import { ghConnect, ghDisconnect, ghInfo, ghConnected, DEFAULT_REPO } from '../github.js';
 import { syncNow, syncInfo, resetSync } from '../sync.js';
 import { editDivision } from '../forms.js';
+import { MODELS, claudeSettings, claudeReady, setClaude, forgetClaudeKey, testClaude } from '../claude.js';
 
 const redraw = () => window.dispatchEvent(new HashChangeEvent('hashchange'));
 
@@ -73,10 +74,43 @@ function divisionsCard() {
         h('button', { class: 'icon-btn small', 'aria-label': 'Move down', disabled: i === ds.length - 1, onclick: () => moveDiv(i, 1) }, '↓'))))));
 }
 
+function claudeCard() {
+  const s = claudeSettings();
+  const model = h('select', { id: 'cl-model', onchange: e => { setClaude({ model: e.target.value }); toast('Model saved'); } }, MODELS.map(([v, l]) => h('option', { value: v, selected: v === s.model }, l)));
+  const msg = h('p', { class: 'hint', role: 'status' });
+  if (claudeReady()) {
+    return h('section', { class: 'card' },
+      h('div', { class: 'card-head' }, h('h2', {}, 'Claude for Thoughts'), h('span', { class: 'badge ok' }, 'On')),
+      h('p', {}, 'Claude replies to your thoughts using your Anthropic API key on this device. Each reply costs a few cents, billed to your Anthropic account.'),
+      h('div', { class: 'field' }, h('label', { for: 'cl-model' }, 'Model'), model),
+      h('div', { class: 'row' },
+        h('button', { class: 'btn', onclick: async () => { msg.textContent = 'Checking…'; try { await testClaude(); msg.textContent = 'Working.'; } catch (e) { msg.textContent = e.message; } } }, 'Test'),
+        h('button', { class: 'btn ghost', onclick: async () => { if (await confirmBox('Remove the API key from this device?', 'Your thoughts stay. You can add a key again any time.', 'Remove')) { forgetClaudeKey(); redraw(); } } }, 'Remove key from this device')),
+      msg);
+  }
+  const key = h('input', { id: 'cl-key', type: 'password', autocomplete: 'off', placeholder: 'sk-ant-…' });
+  return h('section', { class: 'card' },
+    h('div', { class: 'card-head' }, h('h2', {}, 'Claude for Thoughts'), h('span', { class: 'badge' }, 'Off')),
+    h('p', {}, 'The Thoughts tab talks to Claude through your own Anthropic API account (the same account SchoolIndaba uses).'),
+    h('ol', { class: 'steps' },
+      h('li', {}, 'Open ', h('a', { href: 'https://console.anthropic.com/settings/keys', target: '_blank', rel: 'noopener' }, 'console.anthropic.com › API keys'), ' and create a key called “Sapphorion HQ”. A separate key means you can see what HQ costs and switch it off on its own.'),
+      h('li', {}, 'Set a monthly spend limit for your account under Settings › Limits, so a surprise bill can’t happen.'),
+      h('li', {}, 'Paste the key below on each device you want to use Thoughts on. It stays on that device only: it isn’t synced or backed up.')),
+    h('div', { class: 'field' }, h('label', { for: 'cl-key' }, 'API key'), key),
+    h('div', { class: 'field' }, h('label', { for: 'cl-model' }, 'Model'), model),
+    h('div', { class: 'row' }, h('button', { class: 'btn primary', onclick: async e => {
+      const v = key.value.trim(); if (!v) { key.focus(); return; }
+      e.target.disabled = true; setClaude({ key: v }); msg.textContent = 'Checking…';
+      try { await testClaude(); toast('Claude is connected'); redraw(); } catch (err) { forgetClaudeKey(); msg.textContent = err.message; e.target.disabled = false; }
+    } }, 'Connect')),
+    msg,
+    h('p', { class: 'hint' }, 'What Claude sees: the division you pick (its status, next step, notes, tasks, deadlines and links) and a one-line summary of the others. Contacts are never sent.'));
+}
+
 export function settingsPage() {
   return h('div', { class: 'page' },
     h('header', { class: 'page-head' }, h('h1', {}, 'Settings')),
-    syncCard(), divisionsCard(), backupCard(),
+    syncCard(), claudeCard(), divisionsCard(), backupCard(),
     h('section', { class: 'card' },
       h('div', { class: 'card-head' }, h('h2', {}, 'Install on your devices')),
       h('p', {}, 'On Android: open this page in Chrome, tap ⋮ › Add to Home screen. On a computer: click the install icon in the address bar. HQ then opens like an app and works offline.')));

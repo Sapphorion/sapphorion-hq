@@ -65,7 +65,7 @@ function seed() {
     l('Teacher’s Desk code', 'https://github.com/Sapphorion/Klasboek', 'teachersdesk', 'Code'),
     l('Roll Call code', 'https://github.com/Sapphorion/Roll_Call', 'teachersdesk', 'Code'),
   ];
-  return { app: 'sapphorion-hq', version: 1, divisions, tasks, deadlines, contacts: [], links, updated: new Date().toISOString() };
+  return { app: 'sapphorion-hq', version: 1, divisions, tasks, deadlines, contacts: [], links, thoughts: [], updated: new Date().toISOString() };
 }
 
 export const state = { data: seed(), loaded: false };
@@ -82,7 +82,7 @@ export async function loadState() {
 }
 
 function normalise(d) {
-  return { app: 'sapphorion-hq', version: 1, divisions: d.divisions || [], tasks: d.tasks || [], deadlines: d.deadlines || [], contacts: d.contacts || [], links: d.links || [], updated: d.updated || '' };
+  return { app: 'sapphorion-hq', version: 1, divisions: d.divisions || [], tasks: d.tasks || [], deadlines: d.deadlines || [], contacts: d.contacts || [], links: d.links || [], thoughts: d.thoughts || [], updated: d.updated || '' };
 }
 
 // Every change goes through here: update in memory, save to the device, tell the page and sync.

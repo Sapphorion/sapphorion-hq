@@ -12,6 +12,7 @@ One place to run every Sapphorion division: HelloEducation, SchoolIndaba, Sappho
 - **Calendar:** a month view and the next 60 days. Deadlines can repeat every week, month, first Saturday of the month, or year (CIPC annual return, provisional tax, PAIA report, domain renewals).
 - **Contacts:** the people you deal with for each division, with Call, WhatsApp and Email buttons.
 - **Links:** every site, repository, dashboard and government portal per division. Links only, never passwords.
+- **Thoughts:** share a thought about any division and talk it through with Claude. Claude knows where that division stands (status, next step, notes, tasks, deadlines, links) and can suggest tasks you add with one tap.
 
 It works offline and installs like an app (Settings › Install on your devices). There's no accounting here: money stays in Zoho Books.
 
@@ -28,6 +29,13 @@ HQ refuses to sync to a public repository.
 3. In HQ: Settings › Sync between devices › paste the token › Connect. Do this once on each device.
 
 The token stays on the device it was pasted on.
+
+## Turn on Claude (Thoughts)
+
+1. At console.anthropic.com › API keys, create a key called “Sapphorion HQ”, and set a monthly spend limit under Settings › Limits.
+2. In HQ: Settings › Claude for Thoughts › paste the key › Connect. Do this on each device you want to use it on.
+
+The key stays on that device: it isn't synced, backed up or stored in any repository. Claude is called straight from your browser, and each reply is billed to your Anthropic account (a few cents with Sonnet). Contacts are never sent to Claude. Your thoughts and Claude's replies sync with the rest of your data to the private repository.
 
 ## Publishing changes
 

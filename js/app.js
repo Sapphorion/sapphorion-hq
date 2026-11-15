@@ -11,6 +11,7 @@ import { calendarPage } from './views/calendar.js';
 import { contactsPage } from './views/contacts.js';
 import { linksPage } from './views/links.js';
 import { settingsPage } from './views/settings.js';
+import { thoughtsPage } from './views/thoughts.js';
 
 const NAV = [
   ['home', 'Home', '⌂'],
@@ -18,6 +19,7 @@ const NAV = [
   ['calendar', 'Calendar', '▦'],
   ['contacts', 'Contacts', '☺'],
   ['links', 'Links', '↗'],
+  ['thoughts', 'Thoughts', '✦'],
   ['settings', 'Settings', '⚙'],
 ];
 
@@ -25,7 +27,7 @@ const main = document.getElementById('main');
 const nav = document.getElementById('nav');
 
 function route() {
-  const [page, arg] = (location.hash.slice(1) || 'home').split('/');
+  const [page, arg, arg2] = (location.hash.slice(1) || 'home').split('/');
   let view;
   switch (page) {
     case 'division': view = divisionPage(decodeURIComponent(arg || '')); break;
@@ -34,6 +36,7 @@ function route() {
     case 'contacts': view = contactsPage(); break;
     case 'links': view = linksPage(); break;
     case 'settings': view = settingsPage(); break;
+    case 'thoughts': view = thoughtsPage(arg, arg2); break;
     default: view = home();
   }
   const y = window.scrollY, same = main.dataset.page === location.hash;

@@ -1,13 +1,13 @@
 // Offline support: every app file is cached on install, so HQ opens with no internet.
 // Bump VERSION whenever any file changes so your devices pick up the update.
-const VERSION = 'hq-v1';
+const VERSION = 'hq-v2';
 const FILES = [
   './', './index.html', './styles.css', './manifest.webmanifest',
   './fonts/atkinson-hyperlegible-latin-400-normal.woff2', './fonts/atkinson-hyperlegible-latin-700-normal.woff2',
   './fonts/bricolage-grotesque-latin-600-normal.woff2', './fonts/bricolage-grotesque-latin-800-normal.woff2',
   './icons/icon-180.png', './icons/icon-192.png', './icons/icon-512.png', './icons/phoenix.png',
-  './js/app.js', './js/dates.js', './js/db.js', './js/forms.js', './js/github.js', './js/parts.js', './js/state.js', './js/sync.js', './js/ui.js',
-  './js/views/calendar.js', './js/views/contacts.js', './js/views/division.js', './js/views/home.js', './js/views/links.js', './js/views/settings.js', './js/views/tasks.js',
+  './js/app.js', './js/claude.js', './js/markdown.js', './js/dates.js', './js/db.js', './js/forms.js', './js/github.js', './js/parts.js', './js/state.js', './js/sync.js', './js/ui.js',
+  './js/views/calendar.js', './js/views/contacts.js', './js/views/division.js', './js/views/home.js', './js/views/links.js', './js/views/settings.js', './js/views/tasks.js', './js/views/thoughts.js',
 ];
 
 self.addEventListener('install', e => {

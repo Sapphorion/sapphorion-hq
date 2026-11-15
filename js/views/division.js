@@ -35,6 +35,7 @@ export function divisionPage(id) {
       h('div', { class: 'row' },
         h('label', { class: 'sr', for: 'focus' }, 'Focus'),
         h('select', { id: 'focus', class: 'focus-select f-' + FOCUS.indexOf(d.focus), onchange: e => save('divisions', { ...d, focus: e.target.value }) }, FOCUS.map(f => h('option', { value: f, selected: f === d.focus }, f))),
+        h('a', { class: 'btn', href: '#thoughts/new/' + encodeURIComponent(id) }, '✦ Share a thought'),
         h('button', { class: 'btn', onclick: () => editDivision(d) }, 'Edit'))),
     h('div', { class: 'grid2' },
       h('section', { class: 'card standing' },
