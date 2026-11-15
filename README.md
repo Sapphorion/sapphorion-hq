@@ -32,7 +32,7 @@ The token stays on the device it was pasted on.
 
 ## Turn on Claude (Thoughts)
 
-1. At console.anthropic.com › API keys, create a key called “Sapphorion HQ”, and set a monthly spend limit under Settings › Limits.
+1. At platform.claude.com › Settings › API keys, create a key called “Sapphorion HQ”, and set a monthly spend limit under Settings › Limits.
 2. In HQ: Settings › Claude for Thoughts › paste the key › Connect. Do this on each device you want to use it on.
 
 The key stays on that device: it isn't synced, backed up or stored in any repository. Claude is called straight from your browser, and each reply is billed to your Anthropic account (a few cents with Sonnet). Contacts are never sent to Claude. Your thoughts and Claude's replies sync with the rest of your data to the private repository.

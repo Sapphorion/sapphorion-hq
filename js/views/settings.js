@@ -93,7 +93,7 @@ function claudeCard() {
     h('div', { class: 'card-head' }, h('h2', {}, 'Claude for Thoughts'), h('span', { class: 'badge' }, 'Off')),
     h('p', {}, 'The Thoughts tab talks to Claude through your own Anthropic API account (the same account SchoolIndaba uses).'),
     h('ol', { class: 'steps' },
-      h('li', {}, 'Open ', h('a', { href: 'https://console.anthropic.com/settings/keys', target: '_blank', rel: 'noopener' }, 'console.anthropic.com › API keys'), ' and create a key called “Sapphorion HQ”. A separate key means you can see what HQ costs and switch it off on its own.'),
+      h('li', {}, 'Open ', h('a', { href: 'https://platform.claude.com/settings/keys', target: '_blank', rel: 'noopener' }, 'platform.claude.com › Settings › API keys'), ' and create a key called “Sapphorion HQ”. A separate key means you can see what HQ costs and switch it off on its own.'),
       h('li', {}, 'Set a monthly spend limit for your account under Settings › Limits, so a surprise bill can’t happen.'),
       h('li', {}, 'Paste the key below on each device you want to use Thoughts on. It stays on that device only: it isn’t synced or backed up.')),
     h('div', { class: 'field' }, h('label', { for: 'cl-key' }, 'API key'), key),

@@ -1,6 +1,6 @@
 // Offline support: every app file is cached on install, so HQ opens with no internet.
 // Bump VERSION whenever any file changes so your devices pick up the update.
-const VERSION = 'hq-v2';
+const VERSION = 'hq-v3';
 const FILES = [
   './', './index.html', './styles.css', './manifest.webmanifest',
   './fonts/atkinson-hyperlegible-latin-400-normal.woff2', './fonts/atkinson-hyperlegible-latin-700-normal.woff2',

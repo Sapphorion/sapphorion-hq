@@ -74,7 +74,7 @@ export async function askClaude(thread, onText, signal) {
   if (!res.ok) {
     const j = await res.json().catch(() => ({}));
     const msg = j.error?.message || `Anthropic said ${res.status}`;
-    throw new Error(res.status === 401 ? 'The API key wasn’t accepted. Check it in Settings.' : res.status === 429 ? 'Too many requests or the spend limit was reached. Try again in a minute, or check your limits at console.anthropic.com.' : res.status === 529 ? 'Claude is very busy right now. Try again in a minute.' : msg);
+    throw new Error(res.status === 401 ? 'The API key wasn’t accepted. Check it in Settings.' : res.status === 429 ? 'Too many requests or the spend limit was reached. Try again in a minute, or check your limits at platform.claude.com.' : res.status === 529 ? 'Claude is very busy right now. Try again in a minute.' : msg);
   }
   const reader = res.body.getReader(), dec = new TextDecoder();
   let buf = '', text = '';
